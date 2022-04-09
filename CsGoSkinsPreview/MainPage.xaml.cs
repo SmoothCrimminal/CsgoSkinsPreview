@@ -1,20 +1,17 @@
-﻿namespace CsGoSkinsPreview;
+﻿using CsGoSkinsPreview.Remote.Interfaces;
+using CsGoSkinsPreview.ViewModels;
+
+namespace CsGoSkinsPreview;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
-
-	public MainPage()
+	private readonly MainPageVM _mainPageVM;
+	public MainPage(IApiCaller apiCaller)
 	{
+		_mainPageVM = new(apiCaller);
+		BindingContext = _mainPageVM;
+		_mainPageVM?.Initialize();
 		InitializeComponent();
-	}
-
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
-		CounterLabel.Text = $"Current count: {count}";
-
-		SemanticScreenReader.Announce(CounterLabel.Text);
 	}
 }
 

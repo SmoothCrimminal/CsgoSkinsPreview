@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CsGoSkinsPreview.Remote.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,8 @@ namespace CsGoSkinsPreview.Remote.Interfaces
 {
     public interface IApiCaller
     {
-        Task<bool> GetAllItems();
-        Task<bool> GetItemPrice();
-        Task<bool> GetInventoryValue();
+        Task<SkinsRealRoot> GetAllItems();
+        Task<Price> GetItemPrice(string itemID);
+        Task<InventoryValue> GetInventoryValue(string inventoryID);
     }
 }

@@ -1,11 +1,13 @@
-﻿namespace CsGoSkinsPreview;
+﻿using CsGoSkinsPreview.Remote.Interfaces;
+
+namespace CsGoSkinsPreview;
 
 public partial class App : Application
 {
-	public App()
+	public App(IApiCaller apiCaller)
 	{
 		InitializeComponent();
 
-		MainPage = new MainPage();
+		MainPage = new MainPage(apiCaller);
 	}
 }

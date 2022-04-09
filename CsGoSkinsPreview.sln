@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsGoSkinsPreview", "CsGoSkinsPreview\CsGoSkinsPreview.csproj", "{7FD88772-E253-4FE1-BFA8-68FEE1B03A30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsGoSkinsPreview.Remote", "CsGoSkinsPreview.Remote\CsGoSkinsPreview.Remote.csproj", "{873EC747-54FE-4E0F-A03C-766B0EA0B401}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsGoSkinsPreview.Remote", "CsGoSkinsPreview.Remote\CsGoSkinsPreview.Remote.csproj", "{873EC747-54FE-4E0F-A03C-766B0EA0B401}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsGoSkinsPreview.Controls", "CsGoSkinsPreview.Controls\CsGoSkinsPreview.Controls.csproj", "{78AB21A9-5276-430B-B0C6-8CE8042954AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{873EC747-54FE-4E0F-A03C-766B0EA0B401}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{873EC747-54FE-4E0F-A03C-766B0EA0B401}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{873EC747-54FE-4E0F-A03C-766B0EA0B401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78AB21A9-5276-430B-B0C6-8CE8042954AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78AB21A9-5276-430B-B0C6-8CE8042954AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78AB21A9-5276-430B-B0C6-8CE8042954AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78AB21A9-5276-430B-B0C6-8CE8042954AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

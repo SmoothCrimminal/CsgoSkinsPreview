@@ -1,5 +1,7 @@
 ﻿using CsGoSkinsPreview.Remote.Interfaces;
 using CsGoSkinsPreview.Remote.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,14 +21,35 @@ namespace CsGoSkinsPreview.Remote.Remote
             _apiHelper = apiHelper;
         }
 
-        public Task<bool> GetAllItems()
+        public async Task<SkinsRealRoot> GetAllItems()
         {
-            throw new NotImplementedException();
+            var queryDict = Tools.ObjectToDictionary(new SkinsQueryParameters
+            {
+                Currency = "PLN",
+            });
+            var query = _apiHelper.QueryBuilder(queryDict, $"{_apiHelper.ApiUrl}/GetItemsList/v2");
+            var dto = await _apiHelper.Get(query);
+            var skinsRoot = _apiHelper.GetStringResponseAs<SkinsRoot>(dto);
+            return new SkinsRealRoot()
+            {
+                Currency = skinsRoot.Currency,
+                Success = skinsRoot.Success,
+                Timestamp = skinsRoot.Timestamp,
+                ItemsList = (JsonConvert.DeserializeObject(skinsRoot.ItemsList.ToString()) as JObject).Children().Select(x => System.Text.Json.JsonSerializer.Deserialize<Skin>(x.First.ToString())).ToList()
+            };
         }
 
-        public Task<bool> GetInventoryValue()
+        public async Task<InventoryValue> GetInventoryValue(string inventoryID)
         {
-            throw new NotImplementedException();
+            var queryDict = Tools.ObjectToDictionary(new QueryParameters
+            {
+                Id = inventoryID,
+                Currency = "PLN"
+            });
+            var query = _apiHelper.QueryBuilder(queryDict, $"{_apiHelper.ApiUrl}/GetInventoryValue");
+            var dto = await _apiHelper.Get(query);
+            var res = _apiHelper.GetStringResponseAs<InventoryValue>(dto);
+            return res;
         }
 
         public async Task<Price> GetItemPrice(string itemID)
@@ -38,7 +61,7 @@ namespace CsGoSkinsPreview.Remote.Remote
                 Time = "7",
                 Icon = "1"
             });
-            var query = _apiHelper.QueryBuilder(queryDict, _apiHelper.ApiUrl);
+            var query = _apiHelper.QueryBuilder(queryDict, $"{_apiHelper.ApiUrl}/GetItemPrice");
             var dto = await _apiHelper.Get(query);
             var res = _apiHelper.GetStringResponseAs<Price>(dto);
             return res;

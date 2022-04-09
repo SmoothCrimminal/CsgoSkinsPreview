@@ -1,4 +1,6 @@
-﻿namespace CsGoSkinsPreview;
+﻿using CsGoSkinsPreview.Remote.Interfaces;
+using CsGoSkinsPreview.Remote.Remote;
+namespace CsGoSkinsPreview;
 
 public static class MauiProgram
 {
@@ -11,6 +13,8 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 			});
+		builder.Services.AddScoped<IApiHelper, ApiHelper>();
+		builder.Services.AddScoped<IApiCaller, ApiCaller>();
 
 		return builder.Build();
 	}

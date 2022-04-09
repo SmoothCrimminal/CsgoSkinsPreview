@@ -43,7 +43,7 @@ namespace CsGoSkinsPreview.Remote.Remote
             if (response.IsSuccessStatusCode)
             {
                 var result = response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<T>(result.Result);
+                return System.Text.Json.JsonSerializer.Deserialize<T>(result.Result);
             }
             throw new HttpRequestException("Cannot read content from faulted response!");
         }
