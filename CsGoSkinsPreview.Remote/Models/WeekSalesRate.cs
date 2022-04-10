@@ -10,10 +10,10 @@ namespace CsGoSkinsPreview.Remote.Models
     public class WeekSalesRate
     {
         [JsonPropertyName("average")]
-        public double Average { get; set; }
+        public decimal Average { get; set; }
 
         [JsonPropertyName("median")]
-        public double Median { get; set; }
+        public decimal Median { get; set; }
 
         [JsonPropertyName("sold")]
         public string Sold { get; set; }
@@ -22,9 +22,9 @@ namespace CsGoSkinsPreview.Remote.Models
         public string StandardDeviation { get; set; }
 
         [JsonPropertyName("lowest_price")]
-        public double LowestPrice { get; set; }
+        public decimal LowestPrice { get; set; }
 
         [JsonPropertyName("highest_price")]
-        public double HighestPrice { get; set; }
+        public decimal HighestPrice { get; set; }
     }
 }

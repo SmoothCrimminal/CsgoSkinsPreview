@@ -15,7 +15,7 @@ public partial class CardView : ContentView
     public string SkinRarityColor
     {
         get { return (string)GetValue(SkinRarityColorProperty); }
-        set { SetValue(SkinRarityColorProperty, "#" + value); }
+        set { SetValue(SkinRarityColorProperty, value); }
     }
     public string SkinName
     {

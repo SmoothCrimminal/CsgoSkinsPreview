@@ -1,5 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CsGoSkinsPreview.MainPage">
+             xmlns:controls="clr-namespace:CsGoSkinsPreview.Controls;assembly=CsGoSkinsPreview.Controls"
+             x:Class="CsGoSkinsPreview.MainPage"
+             BackgroundColor="Gray">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackLayout Orientation="Horizontal"> 
+            <Entry Placeholder="From..." PlaceholderColor="LightGray" Keyboard="Numeric" x:Name="PriceFrom" x:FieldModifier="public"/>
+            <Entry Placeholder="To..." PlaceholderColor="LightGray" Keyboard="Numeric" x:Name="PriceTo" x:FieldModifier="public"/>
+            <Picker ItemsSource="{Binding WeaponTypes}" x:Name="WeaponTypes" x:FieldModifier="public"/>
+            <Button Text="Search" x:Name="SearchButton" Clicked="SearchButton_Clicked"/>
+        </StackLayout>
+        <ListView ItemsSource="{Binding CsGoWeapons}" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <controls:CardView
+                    SkinImageSource="{Binding IconUrl}"
+                    SkinRarityColor="{Binding RarityColor}"
+                    SkinName="{Binding Name}"
+                    SkinPrice="{Binding Price._7Days.Average}"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>

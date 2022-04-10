@@ -56,6 +56,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Prism.Core" Version="8.1.97" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\CsGoSkinsPreview.Controls\CsGoSkinsPreview.Controls.csproj" />
 	  <ProjectReference Include="..\CsGoSkinsPreview.Remote\CsGoSkinsPreview.Remote.csproj" />
 	</ItemGroup>
 

@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CsGoSkinsPreview.Controls.CardView">
+             xmlns:local="clr-namespace:CsGoSkinsPreview.Controls"
+             x:Class="CsGoSkinsPreview.Controls.CardView"
+             WidthRequest="600"
+             HeightRequest="300">
     <Frame BackgroundColor="White" HasShadow="True" HorizontalOptions="CenterAndExpand"
            CornerRadius="10">
         <Grid>
@@ -9,11 +12,11 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <Image Source="{Binding SkinImageSource}"/>
-            <Frame BorderColor="{Binding SkinRarityColor}" Padding="0, 8, 0, 0" Grid.Row="1">
-                <StackLayout Grid.Row="1" Orientation="Vertical">
-                    <Label Text="{Binding SkinName}" HorizontalOptions="CenterAndExpand" FontSize="Header" />
-                    <Label Text="{Binding SkinPrice}" HorizontalOptions="CenterAndExpand" FontSize="Subtitle" />
+            <Image Source="{Binding SkinImageSource, Source={RelativeSource AncestorType={x:Type local:CardView}}}"/>
+            <Frame Padding="0, 8, 0, 0" Grid.Row="1" BackgroundColor="{Binding SkinRarityColor, Source={RelativeSource AncestorType={x:Type local:CardView}}}">
+                <StackLayout Grid.Row="1" Orientation="Vertical" BackgroundColor="White">
+                    <Label Text="{Binding SkinName, Source={RelativeSource AncestorType={x:Type local:CardView}}}" HorizontalOptions="CenterAndExpand" FontSize="Title" TextColor="Black"/>
+                    <Label Text="{Binding SkinPrice, Source={RelativeSource AncestorType={x:Type local:CardView}}}" HorizontalOptions="CenterAndExpand" FontSize="Subtitle" TextColor="Black"/>
                 </StackLayout>
             </Frame>
         </Grid>
