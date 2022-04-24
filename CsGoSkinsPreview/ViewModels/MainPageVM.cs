@@ -32,6 +32,17 @@ namespace CsGoSkinsPreview.ViewModels
           }
         }
 
+        private ObservableCollection<Skin> _csGoFilteredWeapons;
+        public ObservableCollection<Skin> FilteredCsGoWeapons
+        {
+            get { return _csGoFilteredWeapons; }
+            set
+            {
+                _csGoFilteredWeapons = value;
+                OnPropertyChanged(nameof(FilteredCsGoWeapons));
+            }
+        }
+
         private List<string> _weaponTypes;
         public List<string> WeaponTypes 
         { 
@@ -56,18 +67,19 @@ namespace CsGoSkinsPreview.ViewModels
             allCsWeapons.ToList().ForEach( x => { x.RarityColor = "#" + x.RarityColor; x.IconUrl = $"https://steamcommunity-a.akamaihd.net/economy/image/{x.IconUrl}"; });
             CsGoWeapons = new ObservableCollection<Skin>(allCsWeapons);
             WeaponTypes = allCsWeapons.Select(x => x.WeaponType).Distinct().ToList();
+            FilteredCsGoWeapons = new ObservableCollection<Skin>(allCsWeapons);
         }
 
         public async Task SearchCommandExecute()
         {
-            var searchCommand = new SearchCommand();
-            var searchCmdRes = await searchCommand.ExecuteAsync(new SearchCommandArguments()
+            var searchCommand = new SearchCommand(this);
+            await searchCommand.ExecuteAsync(new SearchCommandArguments()
             {
-                AllSkins = CsGoWeapons,
                 PriceFrom = _mainPage.PriceFrom.Text,
                 PriceTo = _mainPage.PriceTo.Text,
+                WeaponType = _mainPage.WeaponTypes.SelectedItem == null ? "" : _mainPage.WeaponTypes.SelectedItem.ToString(),
+                SkinName = _mainPage.SkinByName.Text
             });
-            CsGoWeapons = new ObservableCollection<Skin>(searchCmdRes);
         }
 
         private void OnPropertyChanged(PropertyChangedEventArgs e)

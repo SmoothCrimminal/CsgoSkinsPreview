@@ -10,9 +10,9 @@ namespace CsGoSkinsPreview.Models
 {
     public class SearchCommandArguments
     {
-        public ObservableCollection<Skin> AllSkins { get; set; }
         public string PriceFrom { get; set; }
         public string PriceTo { get; set; }
         public string WeaponType { get; set; }
+        public string SkinName { get; set; }
     }
 }

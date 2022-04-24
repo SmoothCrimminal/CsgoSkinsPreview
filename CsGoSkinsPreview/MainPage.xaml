@@ -3,20 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:CsGoSkinsPreview.Controls;assembly=CsGoSkinsPreview.Controls"
              x:Class="CsGoSkinsPreview.MainPage"
-             BackgroundColor="Gray">
+             BackgroundColor="Gray"
+             >
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackLayout Orientation="Horizontal"> 
+        <StackLayout Orientation="Horizontal" Spacing="5"> 
             <Entry Placeholder="From..." PlaceholderColor="LightGray" Keyboard="Numeric" x:Name="PriceFrom" x:FieldModifier="public"/>
             <Entry Placeholder="To..." PlaceholderColor="LightGray" Keyboard="Numeric" x:Name="PriceTo" x:FieldModifier="public"/>
             <Picker ItemsSource="{Binding WeaponTypes}" x:Name="WeaponTypes" x:FieldModifier="public"/>
+            <Entry Placeholder="Skin name..." x:Name="SkinByName" x:FieldModifier="public" Keyboard="Text"/>
             <Button Text="Search" x:Name="SearchButton" Clicked="SearchButton_Clicked"/>
         </StackLayout>
-        <ListView ItemsSource="{Binding CsGoWeapons}" Grid.Row="1">
+        <ListView ItemsSource="{Binding FilteredCsGoWeapons}" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
